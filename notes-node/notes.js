@@ -2,13 +2,24 @@ console.log('Starting notes.js');
 
 const fs = require('fs');
 
-var addNote = (title, body) => {
-    console.log('Adding note ', title, body);
-    let notes = [];
+let fetchNotes = () => {
+
     try {
         let notesString = fs.readFileSync('notes-data.json');
-        notes = JSON.parse(notesString);
-    } catch (e) {}
+        return JSON.parse(notesString);
+    } catch (e) {
+        return [];
+    }
+
+};
+
+let saveNotes = (notes) => {
+    fs.writeFileSync('notes-data.json', JSON.stringify(notes));
+};
+
+var addNote = (title, body) => {
+    console.log('Adding note ', title, body);
+    let notes = fetchNotes();
 
     let note = {
         title,
@@ -20,15 +31,13 @@ var addNote = (title, body) => {
 
     if (duplicateNotes.length === 0) {
         notes.push(note);
-        fs.writeFileSync('notes-data.json', JSON.stringify(notes));
-    } else  {
+        saveNotes(notes);
+        return note;
+    } else {
         console.log('Avoiding adding same title: ', title);
-        
+        return {};
+
     }
-
-
-
-
 };
 
 var getAll = () => {
