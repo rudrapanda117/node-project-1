@@ -17,8 +17,8 @@
   },
   "homepage": "https://github.com/rudrapanda117/node-project-1#readme",
   "dependencies": {
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "yargs": "^10.0.3"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
