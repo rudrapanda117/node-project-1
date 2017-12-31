@@ -20,13 +20,20 @@ if (command === 'add') {
    if(_.isEmpty(note)) {
        console.log('Note is already in use');       
    } else {
-       console.log('Note Created '+ 'with title: ',note.title+ 'with body: '+ note.body);
+       console.log('Note Created');
+       notes.logNote(note);
        
    }
 } else if (command === 'list') {
    notes.getAll();
 } else if (command === 'read') {
-    notes.readNote(argv.title);
+    let note = notes.readNote(argv.title);
+    if(_.isEmpty(note)) {
+        console.log('Note not found');        
+    }else {
+        console.log(`Note found.`);
+        notes.logNote(note);
+    }
 } else if (command === 'remove') {
     let notesRemoved = notes.removeNote(argv.title);
     let message = notesRemoved ? 'Note was removed' : 'Note not found';
