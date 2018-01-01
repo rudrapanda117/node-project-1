@@ -33,9 +33,15 @@ axios.get(geoCodeUrl)
 
         let latitude = response.data.results[0].geometry.location.lat;
         let longitude = response.data.results[0].geometry.location.lng;
-        let weatherUrl = `https://api.darksky.net/forecast/a2b0348f7fa5d9fb164cc5c3ff9a4f8a/${latitude},${longitude}?exclude=minutely,hourly,daily,alerts,flags&units=si`;
+        let coordinates = {
+            latitude: latitude,
+            longitude: longitude
+        };
+        return coordinates;
+    })
+    .then((coordinates) => {
+        let weatherUrl = `https://api.darksky.net/forecast/a2b0348f7fa5d9fb164cc5c3ff9a4f8a/${coordinates.latitude},${coordinates.longitude}?exclude=minutely,hourly,daily,alerts,flags&units=si`;
         return axios.get(weatherUrl);
-
     })
     .then((response) => {
         let temperature = response.data.currently.temperature;
