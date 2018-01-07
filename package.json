@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha **/*.test.js",
+    "test": "mocha --recursive ./node-tests/**/*.test.js",
     "test-watch": "nodemon --exec npm run test"
   },
   "repository": {
@@ -27,7 +27,8 @@
     "yargs": "^10.0.3"
   },
   "devDependencies": {
-    "expect": "^22.0.3",
+    "expect": "^1.20.2",
+    "jest": "^22.0.4",
     "supertest": "^3.0.0",
     "tap": "^11.0.1"
   }
