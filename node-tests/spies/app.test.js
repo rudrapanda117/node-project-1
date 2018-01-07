@@ -7,7 +7,8 @@ describe('App', () => {
 
     it('should call the spy cotrrectly', () => {
         var spy = expect.createSpy();
-        spy();
+        spy('Andrew', 25);
         expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledWith('Andrew', 25);
     });
 });
